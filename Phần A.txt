@@ -1,0 +1,74 @@
+Phần A
+1. Một component Angular có 4 file bao gồm:
+TypeScript (.ts) Là file chứa các đoạn code để xử lý logic.
+HTML (.html) Phần hiển thị ra màn hình cho người dung xem
+CSS (.css) Định dạng cho file html để cho phần hiển thị trong đẹp mắt hơn
+Testing (.spec.ts) Dùng để viết kịch bản kiểm thử tự động
+2.
+Trong @Component, ba mục selector, templateUrl, styleUrl có nghĩa là: 
+selector: Chứa file .ts để xử lý logic của trang web
+templateUrl: Chứa file html để hiển thị ra màn hình của người dung
+styleUrl: Chứa file css để trang trí cho giao diện trang web.
+3.
+{{}} là interpolation với chiều đi là từ code hiển thị ra trang web của người dung
+() kaf event binding với chiều là dữ lieu và sự kiện mà người dùng truyền vào code thông qua thao tác trên web
+4.
+Nếu viết {{ title() }} thì dữ lieu trong signal sẽ được hiển thị ra màn hình còn nếu thiếu cặp ngoặt () thì sẽ hiễn thị  phần code của signal đó
+5.
+protected để cho phép các class con và html của component đó truycaajp được và ngăn cản sự truy cập từ các file khác
+readonly Ngăn cho giá trị bên trong signal bị chỉnh sửa trực tiếp bởi 1 Signal khác 
+6.
+Dùng .set() khi muốn thay giá trị đó thành 1 giá trị mới( đổi mòn ăn này thành một món ăn khác), dùng .updaet() để thay đổi giá trị hiên có của biến(thay đổi số lượng của phần ăn của món)
+7.
+.computed() khác signal ở chỗ rằng .computed() là kết quả tính toán bị phụ thuộc vào giá trị của các signal khác. Tránh dùng .set() để cho giá trị tính ra của .computed() bị không lỗi
+8.
+Tách Interface ra file models.ts riêng để:
+Tái sử dụng lại cho các phần khác nhau của code
+Khi sửa đổi thì các file khác sẽ tự động cập nhật
+Tránh lỗi phụ thuộc vòng
+Giữ file Component gọn gàng, tập trung đúng vào logic giao diện.
+
+Phần B
+1.
+Lỗi thiếu dấu ngoặc () phía sau signal
+đùng:<h1>{{ tenCuaHang() }}</h1>
+2.
+Lỗi thiếu this.trướccâu lệnh update
+đúng: protected tangSoLy(): void {
+ this.soLy.update((n) => n + 1);
+}
+3.
+Lỗi có dấu () trước.set
+đúng: 
+protected chonTraSuaMatcha(): void {
+ this.selectedDrink.set(MOCK_DRINKS[1]);
+}
+4.
+Sử dụng set thay vì update
+Đúng:
+
+protected giamSoLy(): void {
+ this.soLy.update((soLyHienTai) => soLyHienTai - 1);
+}
+5.
+Thiếu dấu ngoặc () caa câu lệnh .map
+đúng:
+
+protected readonly toppingDaNhan = computed(() =>
+ this.selectedDrink().toppings.map((topping) => ({
+ name: topping.name,
+ quantity: topping.quantity * this.soLy()
+ }))
+);
+6.
+Lỗi sử dụng hàm set cho signal được khai báo là readonly
+đúng:
+
+protected readonly tongTien = computed(() => this.giaCoBan() *
+this.soLy());
+protected resetGia(): void {
+ this.soLy.set(0);
+}
+
+
+
