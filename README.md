@@ -59,3 +59,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 Link ghi hình bt trà sửa: https://youtu.be/KzXv_8yJl-k
+Link ghi hinh bt tra sua 1/08: https://www.youtube.com/playlist?list=PLRxWZUW6k_2o
