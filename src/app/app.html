@@ -1,16 +1,17 @@
-<h1> {{ title() }} </h1>
-<h2>{{ ShopName() }}</h2>
-<button (click)="chonDuongDen()">Trà sữa trân châu đường đen</button><br>
-<button (click)="chonMatcha()">Trà sữa Matcha</button><br>
-<button (click)="chonHongTra()">Hồng trà sữa</button><br>
-<br>
-<h3>{{ drinks().id}} -- {{drinks().name}} -- {{drinks().giaCoBan}}</h3>
-<p>
-  {{drinks().description}}
-</p>
-<button (click)="giamSoLy()">-</button>
-<span>{{soLy()}}</span>
-<button (click)="tangSoLy()">+</button>
-<pre> {{toppingCanDung() | json }}</pre>
-<p>{{ tongTien() | number }}</p>
-<p>{{ tongTopping() }}</p>
+<div class="shop-shell">
+  <header class="shop-header">
+    <p class="shop-subtitle">Menu trà sữa</p>
+    <h1>{{ title() }}</h1>
+    <h2>{{ ShopName() }}</h2>
+  </header>
+
+  <div class="drink-choice-group" role="group" aria-label="Chọn món">
+  @for(nut of thucuong(); track nut.id ){
+    <button class="choice-btn" (click)="drinks.set(nut)">@if(nut.isFavorite){<span aria-label="món yêu thích">🔥</span>}{{ nut
+.name }}@if(nut.giaCoBan === giaCaoNhat()){ <span aria-label="món đắt nhất">💎</span> }</button>
+  }
+  
+  </div>
+
+  <app-drink-detail [drinks]="drinks()"></app-drink-detail>
+</div>
