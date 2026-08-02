@@ -1,0 +1,86 @@
+Phần A
+1. {{}} là nội suy còn [] là property binding. Cần cả 2 vì dù cho cả 2 hoạt động bình thường đối với kiểu dữ lieu string nhưng {{}} không hoạt động với các kiểu dữ lieu khác như là Number, Boolean, ... mà chỉ hiện nó thành văn bản.
+2. Vì disable là kiểu dữu lieu Boolean nên có [] thì mới hoạt động được
+3. vì biến trong src có thể được chuyền vào và thay đổi được, còn width là nhập cứng 300.
+4. 
+Bc1: Tạo component con
+Bc2: Import component con vào trong cha
+Bc3: Dùng selector để sử dung
+Không tạo component → không có gì để dùng.
+Không import → Angular báo
+Không dùng selector → component không xuất hiện trên giao diện.
+5. Do quy ước của Angular
+6. Vì . chỉ đến file hiện tại còn .. tượng chưng cho đường dẫn tương đối. Viết ..model và bởi model không còn nằm cùng cấp với nó nữa
+7. bởi nếu đặt protected thì nó sẽ thành biến nội bộ nên sẽ không truy cập được từ các file bên ngoài
+8. [drink]="selectedDrink()" đúng bởi nó là signal nên cần dấu ()
+9. Không bởi nó chỉ ảnh hưởng đến html của component chứa nó
+10. @if khác display: none ở chổ nếu không đạt điều kiện thì code sẽ không chạy còn display: none cho phép code chạy nhưng chỉ giấu cho nó không hiện lên trên màn hình
+11. track giúp Angular nhận biết mỗi phần tử trong danh sách là đối tượng nào, từ đó chỉ cập nhật những phần tử thực sự thay đổi thay vì render lại toàn bộ danh sách.
+track &index thường không tốt vì nó phụ thuộc vào địa chỉ ô chứ không phải dữ lieu trong ô nên nếu có thay đổi về số lượng thì tất cả chỉ số sẽ bị thay đổi
+12. Không bởi vì @if và @for ngắn gọn hơn, hiệu năng tốt hơn và không cần import CommonModule.
+
+Phần B
+1. disable thiếu []
+<button type="button" [disabled]="{{ soLy() === 1 }}">−</button>
+2. './models' => '../models'
+import { Component, input } from '@angular/core';
+import { DrinkModel } from '../models';
+@Component({
+selector: 'app-drink-detail',
+templateUrl: './drink-detail.html',
+styleUrl: './drink-detail.css',
+})
+export class DrinkDetail {
+readonly drink = input.required<DrinkModel>();
+}
+3. Thêm DrinkDetail vào trong import[],
+import { Component } from '@angular/core';
+import { DrinkDetail } from '../drink-detail/drink-detail';
+@Component({
+selector: 'app-drink-list',
+imports: [DrinkDetail],
+templateUrl: './drink-list.html',
+styleUrl: './drink-list.css',
+})
+export class DrinkList {}
+<app-drink-detail [drink]="selectedDrink()" />
+
+4. Thiếu () trong selectedDrink
+<app-drink-detail [drink]="selectedDrink()" />
+
+5. Có protected
+export class DrinkDetail {
+ readonly drink = input.required<DrinkModel>();
+}
+
+6. thiếu track
+<ul>
+@for (topping of toppingCanDung() track topping.name) {
+<li>{{ topping.name }}</li>
+}
+</ul>
+
+7. câu lệnh @if chỉ được viết trong file html không phải file ts
+
+import { Component, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
+@Component({
+selector: 'app-drink-list',
+imports: [NgIf],
+templateUrl: './drink-list.html',
+styleUrl: './drink-list.css',
+})
+export class DrinkList {
+protected readonly drinks = signal(MOCK_DRINKS);
+}
+
+8. dùng = thay vì == hoặc ===
+@for (drink of drinks(); track drink.id) {
+<button [class.is-active]="selectedDrink().id == drink.id">{{ drink.name }}
+</button>
+}
+
+9. Thiếu () kế bên drinks
+@for (drink of drinks(); track drink.id) {
+<li>{{ drink.name }}</li>
+}
