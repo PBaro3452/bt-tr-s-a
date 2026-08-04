@@ -60,3 +60,5 @@ For more information on using the Angular CLI, including detailed command refere
 
 Link ghi hình bt trà sửa: https://youtu.be/KzXv_8yJl-k
 Link ghi hinh bt tra sua 1/08: https://www.youtube.com/playlist?list=PLRxWZUW6k_2o
+
+Link bt TS 3/08: https://www.youtube.com/playlist?list=PLB5kz7d3Na7U
