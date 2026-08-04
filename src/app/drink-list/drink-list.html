@@ -1,0 +1,32 @@
+<div class="search-box">
+<label for="tim-mon">Tìm món: </label>
+<input 
+    type="search"
+    id="tim-mon"
+    [ngModel] ="keyword()"
+    (ngModelChange) ="keyword.set($event)"
+    placeholder="Nhập tên món cần tìm:..."/>
+</div>
+
+
+<ul class="drink-choice-group" role="group" aria-label="Chọn món">
+  @for (nut of filterKW(); track nut.id) {
+    <li>
+    <a class ="choice-btn"
+    [class.selected]="selectedDrink().id === nut.id"
+    (click)="chonMon(nut)"
+    [routerLink]="['/drinks', nut.id]">
+      @if (nut.isFavorite) {
+        <span aria-label="món yêu thích">🔥</span>
+      }
+      {{ nut.name }}
+      @if (nut.giaCoBan === giaCaoNhat()) {
+        <span aria-label="món đắt nhất">💎</span>
+      }
+    </a>
+    </li>
+  }@empty {
+    <li class="no-result">Không tìm thấy kết quả</li>
+  }
+
+</ul>

@@ -1,3 +1,9 @@
+<a class ="back-link" routerLink="/drinks">Quay lại danh sách</a>
+
+@if(selectedDrinkFromParams(); as drink)
+{
+  
+<article class="drink-card">
 <div class="detail-card">
   <div class="detail-header">
     <p class="detail-badge">Đang chọn</p>
@@ -69,3 +75,6 @@
     </div>
   </div>
 </div>
+</article>}@else {
+  <p class="not-found">Không tìm thấy công thúc này.</p>
+}

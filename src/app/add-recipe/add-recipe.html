@@ -1,0 +1,16 @@
+
+<h2>Thêm công thức mới</h2>
+
+<form class="recipe-form" [formGroup]="drinkForm" (ngSubmit)="save()">
+  <div class="field">
+    <label class="field-label" for="recipe-name">Tên món</label>
+    <input class="field-input" id="recipe-name" type="text" formControlName="name" />
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="recipe-desc">Mô tả</label>
+    <input class="field-input" id="recipe-desc" type="text" formControlName="description" />
+  </div>
+
+  <button class="submit-button" type="submit">Lưu công thức</button>
+</form>

@@ -1,3 +1,11 @@
 import { Routes } from '@angular/router';
+import { DrinkList } from './drink-list/drink-list';
+import { DrinkDetail } from './drink-detail/drink-detail';
+import { AddDrink } from './add-recipe/add-recipe';
+export const routes: Routes = [
+{ path:'drinks', component: DrinkList },
+{ path: 'drinks/new', component: AddDrink },
+{ path: 'drinks/:id', component: DrinkDetail },
+{ path: '', redirectTo: 'drinks', pathMatch: 'full' },
 
-export const routes: Routes = [];
+];

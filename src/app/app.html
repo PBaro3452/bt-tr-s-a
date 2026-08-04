@@ -5,13 +5,7 @@
     <h2>{{ ShopName() }}</h2>
   </header>
 
-  <div class="drink-choice-group" role="group" aria-label="Chọn món">
-  @for(nut of thucuong(); track nut.id ){
-    <button class="choice-btn" (click)="drinks.set(nut)">@if(nut.isFavorite){<span aria-label="món yêu thích">🔥</span>}{{ nut
-.name }}@if(nut.giaCoBan === giaCaoNhat()){ <span aria-label="món đắt nhất">💎</span> }</button>
-  }
-  
-  </div>
-
-  <app-drink-detail [drinks]="drinks()"></app-drink-detail>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>
