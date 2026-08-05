@@ -10,34 +10,32 @@ import { Router } from '@angular/router';
   styleUrl: './add-recipe.css',
 })
 export class AddDrink {
-
-    private readonly fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
   private readonly recipeService = inject(DrinkService);
   private readonly router = inject(Router);
 
   protected readonly drinkForm = this.fb.nonNullable.group({
-  name: ['', Validators.required],
-  description: ['', Validators.required],
-  giaCoBan: ['', Validators.required],
-
-});
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    giaCoBan: ['', Validators.required],
+  });
 
   protected save(): void {
     if (this.drinkForm.invalid) {
       return;
     }
 
-    const { name, description } = this.drinkForm.getRawValue();
+    // 1. Lấy đủ giaCoBan từ form
+    const { name, description, giaCoBan } = this.drinkForm.getRawValue();
 
     this.recipeService.addrink({
       id: this.nextId(),
       name,
       description,
-      giaCoBan: 0,
+      giaCoBan: Number(giaCoBan),
       imgUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600',
       isFavorite: false,
       topping: [],
-      
     });
 
     this.router.navigate(['/recipes']);
@@ -45,6 +43,7 @@ export class AddDrink {
 
   private nextId(): number {
     const ids = this.recipeService.drinks().map((drink) => drink.id);
-    return Math.max(...ids) + 1;
-}
+    // 2. Tránh lỗi -Infinity khi danh sách rỗng
+    return ids.length > 0 ? Math.max(...ids) + 1 : 1;
+  }
 }

@@ -1,15 +1,29 @@
-
 <h2>Thêm công thức mới</h2>
 
 <form class="recipe-form" [formGroup]="drinkForm" (ngSubmit)="save()">
+  <!-- Field 1: Tên món -->
   <div class="field">
     <label class="field-label" for="recipe-name">Tên món</label>
-    <input class="field-input" id="recipe-name" type="text" formControlName="name" />
+    <div class="field-control">
+      <input class="field-input" id="recipe-name" type="text" formControlName="name" />
+    </div>
   </div>
 
+  <!-- Field 2: Mô tả -->
   <div class="field">
     <label class="field-label" for="recipe-desc">Mô tả</label>
-    <input class="field-input" id="recipe-desc" type="text" formControlName="description" />
+    <div class="field-control">
+      <input class="field-input" id="recipe-desc" type="text" formControlName="description" />
+    </div>
+  </div>
+
+  <!-- Field 3: Giá cơ bản (Đã sửa để đồng nhất class) -->
+  <div class="field">
+    <label class="field-label" for="recipe-gia">Giá cơ bản</label>
+    <div class="field-control">
+      <!-- Đã thêm id để tương thích label -->
+      <input class="field-input" id="recipe-gia" type="number" formControlName="giaCoBan" placeholder="Nhập giá cơ bản">
+    </div>
   </div>
 
   <button class="submit-button" type="submit">Lưu công thức</button>

@@ -1,80 +1,80 @@
-<a class ="back-link" routerLink="/drinks">Quay lại danh sách</a>
+<a class="back-link" routerLink="/drinks">Quay lại danh sách</a>
 
-@if(selectedDrinkFromParams(); as drink)
-{
-  
-<article class="drink-card">
-<div class="detail-card">
-  <div class="detail-header">
-    <p class="detail-badge">Đang chọn</p>
-    <h3 class="drink-title">{{ drinks().id }} — {{ drinks().name }}</h3>
-    <p class="drink-price">Giá cơ bản: {{ drinks().giaCoBan | number }}₫</p>
-  </div>
-
-  <div class="detail-body">
-    <div class="detail-image-block">
-      <img [src]="drinks().imgUrl" alt="Hình ảnh trà sữa {{ drinks().name }}" width="220">
-    </div>
-
-    <div class="detail-info-block">
-      <p class="drink-description">{{ drinks().description }}</p>
-
-      <div class="quantity-control" aria-label="Điều chỉnh số lượng">
-        <button type="button" (click)="giamSoLy()" aria-label="Giảm số ly">−</button>
-        <span class="quantity-value">{{ soLy() }} ly</span>
-        <button type="button" (click)="tangSoLy()" aria-label="Tăng số ly">+</button>
+@if (selectedDrinkFromParams(); as drink) {
+  <article class="drink-card">
+    <div class="detail-card">
+      <div class="detail-header">
+        <p class="detail-badge">Đang chọn</p>
+        <h3 class="drink-title">{{ drink.id }} — {{ drink.name }}</h3>
+        <p class="drink-price">Giá cơ bản: {{ drink.giaCoBan | number }}₫</p>
       </div>
 
-      <table class="detail-table">
-        <tbody>
-          <tr>
-            <th scope="row">Giá cơ bản</th>
-            <td>{{ drinks().giaCoBan | number }}₫
-              <span> @if(drinks().giaCoBan <=40000) { <p class="discount-info">Gía bình dân</p>
+      <div class="detail-body">
+        <div class="detail-image-block">
+          <img [src]="drink.imgUrl" alt="Hình ảnh trà sữa {{ drink.name }}" width="220">
+        </div>
+
+        <div class="detail-info-block">
+          <p class="drink-description">{{ drink.description }}</p>
+
+          <div class="quantity-control" aria-label="Điều chỉnh số lượng">
+            <button type="button" (click)="giamSoLy()" aria-label="Giảm số ly">−</button>
+            <span class="quantity-value">{{ soLy() }} ly</span>
+            <button type="button" (click)="tangSoLy()" aria-label="Tăng số ly">+</button>
+          </div>
+
+          <table class="detail-table">
+            <tbody>
+              <tr>
+                <th scope="row">Giá cơ bản</th>
+                <td>
+                  {{ drink.giaCoBan | number }}₫
+                  <span>
+                    @if (drink.giaCoBan <= 40000) {
+                      <span class="discount-info"> (Giá bình dân)</span>
+                    } @else if (drink.giaCoBan > 40000 && drink.giaCoBan <= 50000) {
+                      <span class="discount-info"> (Giá tiêu chuẩn)</span>
+                    } @else {
+                      <span class="discount-info"> (Giá cao cấp)</span>
+                    }
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Số lượng</th>
+                <td>{{ soLy() }} ly</td>
+              </tr>
+              <tr>
+                <th scope="row">Tổng tiền</th>
+                <td>
+                  {{ tongTien() | number }}₫
+                  @if (soLy() >= 5) {
+                    <span class="discount-info"> (Đã giảm 10%)</span>
                   }
-                  @else if(drinks().giaCoBan > 40000 && drinks().giaCoBan <= 50000) { <p class="discount-info">Giá Tiêu
-                    chuẩn</p>
-                    }
-                    @else if(drinks().giaCoBan > 50000)
-                    {
-                    <p class="discount-info">Giá cao cấp</p>
-                    }
-              </span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Tổng topping</th>
+                <td>{{ tongTopping() }}</td>
+              </tr>
+            </tbody>
+          </table>
 
-            </td>
-
-          </tr>
-          <tr>
-            <th scope="row">Số lượng</th>
-            <td>{{ soLy() }} ly</td>
-          </tr>
-          <tr>
-            <th scope="row">Tổng tiền</th>
-            <td>{{ tongTien() | number }}₫</td>
-            <td> 
-              @if(soLy() >= 5){
-              <p class="discount-info">Ðã giảm 10%</p>
-              }
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Tổng topping</th>
-            <td>{{ tongTopping() }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="topping-box">
-        <h4>Topping đã chọn</h4>
-        @for(drink of toppingCanDung(); track drinks().id ; let i =$index; let odd = $even;){
-        <p class="topping-list" [class.row-alt]="odd">{{ i + 1 }}. {{ drink.name}} <span> {{drink.quantity}} x {{ drink.unit }}</span></p>
-
-        }
-
+          <div class="topping-box">
+            <h4>Topping đã chọn</h4>
+            @for (item of toppingCanDung(); track item.name; let i = $index; let even = $even) {
+              <p class="topping-list" [class.row-alt]="even">
+                {{ i + 1 }}. {{ item.name }} 
+                <span>{{ item.quantity }} x {{ item.unit }}</span>
+              </p>
+            } @empty {
+              <p class="topping-list">Không có topping nào.</p>
+            }
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</article>}@else {
-  <p class="not-found">Không tìm thấy công thúc này.</p>
+  </article>
+} @else {
+  <p class="not-found">Không tìm thấy công thức này.</p>
 }
