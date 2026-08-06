@@ -1,56 +1,32 @@
-.drink-choice-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
-  padding: 0;
-}
-
-.choice-btn {
-  border: 1px solid #f1c79d;
-  border-radius: 999px;
-  padding: 10px 16px;
-  background: #ffffff;
-  color: #6a3a1c;
+.selected
+{
+  
   font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.no-result
+{
+  padding: 12px 20px;
+  color: #e96f23a3;
 }
 
-.choice-btn:hover,
-.choice-btn:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-  outline: none;
-}
-.choice-btn.selected
+.search-field
 {
-    background-color: #1b1004;
-    color: azure;
-    border-color: black;
-}
-.search-box{
-margin-bottom: 16px;
-}
-.search-box label{
-    display: block;
-    margin-bottom: 6px;
-    font-size: 1.5rem;
-    color: rgba(212, 143, 54, 0.833);
+  width: 100%;
+  margin-bottom: 12px;
 }
 
-.search-box input
+.inline-icon
 {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px 14px;
-    border: 1px solid black;
-    border-radius: 12px;
-    font-size: 1rem;
-}
-.search-box input:focus-visible
-{
-    outline: none;
-    border-color: #6a3a1c;
-}
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-left: 4;
+  margin-bottom: 10px;
 
+}
+.add-link
+{
+  display: inline-block;
+  margin-bottom: 12px;
+}

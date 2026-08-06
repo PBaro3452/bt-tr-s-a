@@ -6,6 +6,7 @@ export const DRINKS: DrinkModel[] = [
         name: 'Trà sữa trân châu đường đen',
         description: 'Trà sữa thơm ngon với trân châu dai dai, béo ngậy',
         giaCoBan: 40000,
+        authorEmail: 'Tacgia1@gmail.com',
         imgUrl: 'https://images.unsplash.com/photo-1558857563-b371033873b8?w=600',
         isFavorite: false,
         topping: [
@@ -18,13 +19,15 @@ export const DRINKS: DrinkModel[] = [
             {
                 name: 'Trân châu trắng',quantity: 1,unit: 'gói'
             },
-        ]
+        ],
+        
     },
     {
         id: 2,
         name: 'Trà sữa Matcha',
         description: 'Trà sữa thơm ngon với được pha với matcha nguyên chất',
         giaCoBan: 70000,
+        authorEmail: 'Tacgia2@gmail.com',
         imgUrl: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600',
         isFavorite: true,
         topping: [
@@ -35,12 +38,14 @@ export const DRINKS: DrinkModel[] = [
                 name: 'Trân châu trắng',quantity: 1,unit: 'gói'
             },
         ]
+        
     },
     {
         id: 3,
         name: 'Hồng trà sữa',
         description: 'Trà sữa thơm ngon với được pha bằng hồng trà Hồng Kong thơm ngon và béo ngậy',
         giaCoBan: 30000,
+        authorEmail: 'Tacgia3@gmail.com',
         imgUrl: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600',
         isFavorite: false,
         topping: [
@@ -52,5 +57,6 @@ export const DRINKS: DrinkModel[] = [
                 name: 'Trân châu trắng',quantity: 1,unit: 'gói'
             },
         ]
+        
     },
 ]

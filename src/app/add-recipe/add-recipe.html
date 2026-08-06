@@ -1,30 +1,55 @@
 <h2>Thêm công thức mới</h2>
 
-<form class="recipe-form" [formGroup]="drinkForm" (ngSubmit)="save()">
+<form class="recipe-form" novalidate (submit)="save($event)">
   <!-- Field 1: Tên món -->
-  <div class="field">
-    <label class="field-label" for="recipe-name">Tên món</label>
-    <div class="field-control">
-      <input class="field-input" id="recipe-name" type="text" formControlName="name" />
-    </div>
-  </div>
+  <mat-form-field appearance="outline" class="soft-field">
+    <mat-label>Tên món</mat-label>
+      <input matInput type="text" [formField]="drinkForm.name" placeholder="Nhập tên công thức" />
+  @for (error of recipeForm.name().errors(); track error.kind) {
+    @if (recipeForm.name().touched() && recipeForm.name().invalid()) {
+    <mat-error>{{ error.message }}</mat-error>
+    }
+      }
+  
+    </mat-form-field>
 
   <!-- Field 2: Mô tả -->
-  <div class="field">
-    <label class="field-label" for="recipe-desc">Mô tả</label>
-    <div class="field-control">
-      <input class="field-input" id="recipe-desc" type="text" formControlName="description" />
-    </div>
-  </div>
+  <mat-form-field appearance="outline" class="soft-field">
+    <mat-label>Mô tả</mat-label>
+      <input matInput type="text" [formField]="drinkForm.description" placeholder="Nhập miêu tả công thức"/>
+   @for (error of recipeForm.description().errors(); track error.kind) {
+     @if (recipeForm.description().touched() && recipeForm.name().invalid()) {
+    <mat-error>{{ error.message }}</mat-error>
+    }
+      }
+  
+    </mat-form-field>
 
   <!-- Field 3: Giá cơ bản (Đã sửa để đồng nhất class) -->
-  <div class="field">
-    <label class="field-label" for="recipe-gia">Giá cơ bản</label>
-    <div class="field-control">
+  <mat-form-field appearance="outline" class="soft-field">
+    <mat-label>Giá cơ bản</mat-label>
       <!-- Đã thêm id để tương thích label -->
-      <input class="field-input" id="recipe-gia" type="number" formControlName="giaCoBan" placeholder="Nhập giá cơ bản">
-    </div>
-  </div>
+      <input matInput type="number" [formField]="drinkForm.giaCoBan" placeholder="Nhập giá cơ bản">
+  @for (error of recipeForm.giaCoBan().errors(); track error.kind) {
+     @if (recipeForm.giaCoBan().touched() && recipeForm.name().invalid()) {
+    <mat-error>{{ error.message }}</mat-error>
+    }
+      }
 
-  <button class="submit-button" type="submit">Lưu công thức</button>
+    </mat-form-field>
+
+  <mat-form-field appearance="outline" class="soft-field">
+  <mat-label>Email của tác giả</mat-label>
+      <!-- Đã thêm id để tương thích label -->
+      <input matInput type="text" [formField]="drinkForm.authorEmail" placeholder="Nhập Email của tác giả">
+   @for (error of recipeForm.authorEmail().errors(); track error.kind) {
+     @if (recipeForm.authorEmail().touched() && recipeForm.name().invalid()) {
+    <mat-error>{{ error.message }}</mat-error>
+    }
+      }
+  
+    </mat-form-field>
+
+  <button matButton="filled" type="submit" [disabled]="drinkForm().submitting()">Lưu công thức</button>
 </form>
+<a mat-button routerLink="/drinks"><mat-icon>arrow_back</mat-icon>Quay lại danh sách</a>

@@ -1,9 +1,11 @@
 <div class="shop-shell">
-  <header class="shop-header">
-    <p class="shop-subtitle">Menu trà sữa</p>
-    <h1>{{ title() }}</h1>
-    <h2>{{ ShopName() }}</h2>
-  </header>
+  <mat-toolbar color="primary">
+    <mat-icon svgIcon="local-drink" class="shop-logo"></mat-icon>
+  
+    <span class="shop-subtitle">Menu trà sữa</span>
+    <span class="toolbar-title">{{ ShopName()}}</span>
+    
+  </mat-toolbar>
 
   <main>
     <router-outlet></router-outlet>

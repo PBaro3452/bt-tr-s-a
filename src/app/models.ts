@@ -10,6 +10,7 @@ export interface DrinkModel {
   description: string;
   giaCoBan: number,
   imgUrl: string;
+  authorEmail: string;
   isFavorite: boolean;
   topping: Topping[];
 }

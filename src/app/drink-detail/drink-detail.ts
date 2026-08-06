@@ -4,10 +4,13 @@ import { DecimalPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DrinkService } from '../drink-service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-drink-detail',
-  imports: [DecimalPipe, RouterLink],
+  imports: [DecimalPipe, RouterLink, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './drink-detail.html',
   styleUrl: './drink-detail.css',
 })

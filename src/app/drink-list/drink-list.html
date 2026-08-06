@@ -1,32 +1,31 @@
-<div class="search-box">
-<label for="tim-mon">Tìm món: </label>
-<input 
-    type="search"
-    id="tim-mon"
-    [ngModel] ="keyword()"
-    (ngModelChange) ="keyword.set($event)"
-    placeholder="Nhập tên món cần tìm:..."/>
-</div>
+<a mat-button="filled" routerLink="/drinks/new" class="add-link"><mat-icon>add</mat-icon> Thêm món mới</a>
+
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Tìm món: </mat-label>
+  <input matInput type="search" [ngModel]="keyword()" (ngModelChange)="keyword.set($event)"
+    placeholder="Nhập tên món cần tìm:..." />
+  <mat-icon matSuffix>
+    <search></search>
+  </mat-icon>
+</mat-form-field>
 
 
-<ul class="drink-choice-group" role="group" aria-label="Chọn món">
+<mat-nav-list aria-label="Chọn món">
   @for (nut of filterKW(); track nut.id) {
-    <li>
-    <a class ="choice-btn"
-    [class.selected]="selectedDrink().id === nut.id"
-    (click)="chonMon(nut)"
+  <a mat-list-item [class.selected]="selectedDrink().id === nut.id" (click)="chonMon(nut)"
     [routerLink]="['/drinks', nut.id]">
+    <span matListItemTitle>
       @if (nut.isFavorite) {
-        <span aria-label="món yêu thích">🔥</span>
+      <mat-icon aria-label="món yêu thích" class="inline-icon">🔥</mat-icon>
       }
       {{ nut.name }}
       @if (nut.giaCoBan === giaCaoNhat()) {
-        <span aria-label="món đắt nhất">💎</span>
+      <mat-icon aria-label="món đắt nhất" class="inline-icon">💎</mat-icon>
       }
-    </a>
-    </li>
+    </span>
+  </a>
   }@empty {
-    <li class="no-result">Không tìm thấy kết quả</li>
+  <p class="no-result">Không tìm thấy món uống</p>
   }
 
-</ul>
+</mat-nav-list>

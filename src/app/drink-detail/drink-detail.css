@@ -72,18 +72,24 @@ img {
   font-size: 1rem;
   line-height: 1.75;
   color: #6e4f3f;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+
 }
 
 .quantity-control {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   gap: 14px;
+  margin: 0 auto 15px;   /* thay cho margin-left: 250px + margin-bottom: 15px */
   width: fit-content;
   padding: 10px 14px;
   border-radius: 999px;
   background: #fff6eb;
-  box-shadow: 0 8px 20px rgba(79, 46, 26, 0.08);
+  box-shadow: 0 8px 20px rgba(79, 46, 26, 0.2);
 }
 
 .quantity-control button {
@@ -144,6 +150,7 @@ img {
   padding: 12px 14px;
   border-radius: 14px;
   background: #fff2e7;
+  margin-top: 5px;
 }
 
 .topping-box h4 {
